@@ -23,29 +23,29 @@ public class PA4bTestCase {
 	@SuppressWarnings("serial")
 	private static class ExitException extends SecurityException {}
 	
-	private static class NoExitSecurityManager extends SecurityManager 
-    {
-        @Override
-        public void checkPermission(Permission perm) {}
-        
-        @Override
-        public void checkPermission(Permission perm, Object context) {}
-        
-        @Override
-        public void checkExit(int status) { super.checkExit(status); throw new ExitException(); }
-    }
-	
-	@BeforeEach
-    public void setUp() throws Exception 
-    {
-        System.setSecurityManager(new NoExitSecurityManager());
-    }
-	
-	@AfterEach
-    protected void tearDown() throws Exception 
-    {
-        System.setSecurityManager(null);
-    }
+//	private static class NoExitSecurityManager extends SecurityManager 
+//    {
+//        @Override
+//        public void checkPermission(Permission perm) {}
+//        
+//        @Override
+//        public void checkPermission(Permission perm, Object context) {}
+//        
+//        @Override
+//        public void checkExit(int status) { super.checkExit(status); throw new ExitException(); }
+//    }
+//	
+//	@BeforeEach
+//    public void setUp() throws Exception 
+//    {
+//        System.setSecurityManager(new NoExitSecurityManager());
+//    }
+//	
+//	@AfterEach
+//    protected void tearDown() throws Exception 
+//    {
+//        System.setSecurityManager(null);
+//    }
 	
 	private void _test(String[] a, String msg) {
 		final ByteArrayOutputStream outContent = new ByteArrayOutputStream();

@@ -1,8 +1,8 @@
 package edu.wit.cs.comp1050;
-
+import java.util.Scanner;
 import java.util.ArrayList;
 
-//TODO: document this class
+//Reads any number of integers from the console (via a Scanner), stores them in an ArrayList, removes duplicates from the list, and then outputs the remaining distinct values.
 public class PA4c {
 	
 	/**
@@ -12,7 +12,14 @@ public class PA4c {
 	 * @param list list from which to remove repeated elements
 	 */
 	public static void removeRepeated(ArrayList<Integer> list) {
-		// replace with your code
+		ArrayList<Integer> store = new ArrayList<Integer>();
+		for (int i = 0; i < list.size(); i++) {
+            if (!store.contains(list.get(i))) {
+                store.add(list.get(i));
+            }
+        }
+		 list.clear();
+		 list.addAll(store);
 	}
 
 	/**
@@ -22,7 +29,20 @@ public class PA4c {
 	 * @param args command-line arguments, ignored
 	 */
 	public static void main(String[] args) {
-		// replace with your code
+		Scanner in = new Scanner(System.in);
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		System.out.println("Enter integers: ");
+		while(in.hasNextInt()) {
+			int number = in.nextInt();
+			list.add(number);
+		}
+		if(list.size() == 0) {
+			System.out.println("No values entered.");
+			System.exit(0);
+		}
+		removeRepeated(list);
+		System.out.print("The distinct integer(s): " + list);
+		in.close();
 	}
 
 }

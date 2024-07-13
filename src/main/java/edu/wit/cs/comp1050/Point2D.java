@@ -1,8 +1,9 @@
 package edu.wit.cs.comp1050;
 
-//TODO: document this class
+//Find distance between two points
 public class Point2D {
-	
+	private double x;
+	private double y;
 	/**
 	 * Constructor to initialize coordinates
 	 * 
@@ -10,7 +11,8 @@ public class Point2D {
 	 * @param y y value
 	 */
 	public Point2D(double x, double y) {
-		// replace with your code
+		this.x = x;
+		this.y = y;
 	}
 	
 	/**
@@ -19,7 +21,7 @@ public class Point2D {
 	 * @return x coordinate
 	 */
 	public double getX() {
-		return 0; // replace with your code
+		return this.x;
 	}
 	
 	/**
@@ -28,7 +30,7 @@ public class Point2D {
 	 * @return y coordinate
 	 */
 	public double getY() {
-		return 0; // replace with your code
+		return this.y;	
 	}
 	
 	/**
@@ -41,7 +43,7 @@ public class Point2D {
 	 */
 	@Override
 	public String toString() {
-		return ""; // replace with your code
+		return String.format("(%.3f, %.3f)", x, y);
 	}
 	
 	/**
@@ -56,7 +58,16 @@ public class Point2D {
 	 */
 	@Override
 	public boolean equals(Object o) {
-		return false; // replace with your code
+		if(o == this) {
+			return true;
+		}
+		if(o == null || getClass() != o.getClass()) {
+			return true;
+		} 
+		return false;
+		
+	
+
 	}
 	
 	/**
@@ -69,7 +80,10 @@ public class Point2D {
 	 * @return straightline distance between p1 and p2
 	 */
 	public static double distance(Point2D p1, Point2D p2) {
-		return 0; // replace with your code
+		double x = p2.getX() - p1.getX();
+		double y = p2.getY() - p1.getY();
+		
+		return Math.sqrt((y * y) + (x * x));	
 	}
 	
 	/**
@@ -81,7 +95,7 @@ public class Point2D {
 	 * @return straightline distance between this point and p
 	 */
 	public double distanceTo(Point2D p) {
-		return 0; // MUST call distance above with this point
+		return distance(this, p);
 	}
 
 }

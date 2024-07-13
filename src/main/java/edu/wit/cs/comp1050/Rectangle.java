@@ -1,8 +1,9 @@
 package edu.wit.cs.comp1050;
 
-//TODO: document this class
+//A simple arithmetic to implement such functionality as computing area, perimeter, and center point.
 public class Rectangle extends Shape2D {
-	
+	private Point2D p1;
+	private Point2D p2;
 	/**
 	 * Constructs a rectangle given two points
 	 * 
@@ -11,7 +12,11 @@ public class Rectangle extends Shape2D {
 	 * @param p2 point 2
 	 */
 	public Rectangle(String color, Point2D p1, Point2D p2) {
-		super(color, ""); // replace with your code
+		super(color, "Rectangle");
+		this.p1 = p1;
+		this.p2 = p2;
+	
+
 	}
 	
 	/**
@@ -26,7 +31,14 @@ public class Rectangle extends Shape2D {
 	 */
 	@Override
 	public boolean equals(Object o) {
-		return false; // replace with your code
+		Rectangle other = (Rectangle) o;
+		if(o == this) {
+			return true;
+		}
+		if(this.getLowerLeft().equals(other.getLowerLeft()) && this.getUpperRight().equals(other.getUpperRight())) {
+			return true;
+		}
+		return false;
 	}
 	
 	/**
@@ -35,7 +47,9 @@ public class Rectangle extends Shape2D {
 	 * @return lower-left corner
 	 */
 	public Point2D getLowerLeft() {
-		return null; // replace with your code
+        double minY = Math.min(p1.getY(), p2.getY());
+        double minX = Math.min(p1.getX(), p2.getX());
+        return new Point2D(minX, minY);
 	}
 	
 	/**
@@ -44,27 +58,45 @@ public class Rectangle extends Shape2D {
 	 * @return upper-right corner
 	 */
 	public Point2D getUpperRight() {
-		return null; // replace with your code
+		double maxY = Math.max(p1.getY(), p2.getY());
+        double maxX = Math.max(p1.getX(), p2.getX());
+        return new Point2D(maxX, maxY);
 	}
 
 	@Override
 	public double getArea() {
-		return 0; // replace with your code
+		Point2D lowerLeft = getLowerLeft();
+        Point2D upperRight = getUpperRight();
+        double width = upperRight.getX() - lowerLeft.getX();
+        double height = upperRight.getY() - lowerLeft.getY();
+        return width * height;
 	}
 
 	@Override
 	public double getPerimeter() {
-		return 0; // replace with your code
+		Point2D lowerLeft = getLowerLeft();
+	    Point2D upperRight = getUpperRight();
+	    double width = upperRight.getX() - lowerLeft.getX();
+	    double height = upperRight.getY() - lowerLeft.getY();
+	    return 2 * (width + height);
 	}
 
 	@Override
 	public Point2D getCenter() {
-		return null; // replace with your code
+		Point2D lowerLeft = getLowerLeft();
+        Point2D upperRight = getUpperRight();
+        double centerX = (lowerLeft.getX() + upperRight.getX()) / 2;
+        double centerY = (lowerLeft.getY() + upperRight.getY()) / 2;
+        return new Point2D(centerX, centerY);
 	}
 
 	@Override
 	public Point2D[] getVertices() {
-		return null; // replace with your code
+		Point2D lowerLeft = getLowerLeft();
+        Point2D upperRight = getUpperRight();
+        Point2D lowerRight = new Point2D(upperRight.getX(), lowerLeft.getY());
+        Point2D upperLeft = new Point2D(lowerLeft.getX(), upperRight.getY());
+        return new Point2D[]{lowerLeft, upperLeft, upperRight, lowerRight};
 	}
 
 }
